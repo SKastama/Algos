@@ -67,7 +67,31 @@ const expected5 = user;
  * @param {Array<string>} keys
  * @returns {any} The value at end of path of given keys or null.
  */
-function lens(obj, keys) {}
+function lens(obj, keys) {
+if(keys===null) {
+    return obj;
+}
+let item = obj;
+// iterate through keys to go deeper into object path
+// if the key doesn't exist return null
+// if key does exist move deeper into object
+for(let i=0;i<keys.length;i++) {
+    if(item.hasOwnProperty(keys[i])) {
+    item = item[keys[i]];
+    // console.log(item);
+    }
+    else {
+    return item = null;
+    }
+}
+return item;
+}
+
+console.log(lens(user,keys1));
+console.log(lens(user,keys2));
+console.log(lens(user,keys3));
+console.log(lens(user,keys4));
+console.log(lens(user,keys5));
 
 // /* 
 // Create a function to determine the max amount of
