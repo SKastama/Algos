@@ -82,44 +82,67 @@ const expected6 = false;
  * @returns {boolean} Whether the given str can be rearranged into a palindrome.
  */
 function canStringBecomePalindrome(str) {
+    // if (str.length === 0) {
+    //     return false;
+    // }
+    // else if (str.length === 1) {
+    //     return true;
+    // }
+    // dict= {};
+    // for (let i = 0; i < str.length; i++) {
+    //     if (!dict.hasOwnProperty(str[i])) {
+    //         for (let j = 0; j < str.length; j++) {
+    //             if (str[i] === str[j]) {
+    //                 dict[str[i]]= (dict[str[i]]+1) || 1;
+    //             }
+    //         }
+    //     }
+    // }
+    // let count = 0;
+    // for (let x in dict) {
+    //     if (str.length%2 === 0){
+    //         if (dict[x]%2 === 0) {
+    //             return true;
+    //         }
+    //         else {
+    //             return false;
+    //         }
+    //     }
+    //     else {
+    //         if (dict[x]%2 !== 0) {
+    //             count+= 1;
+    //         }
+    //     }
+    // }
+    // if (count === 1) {
+    //     return true;
+    // }
+    // else {
+    //     return false;
+    // }
+    
     if (str.length === 0) {
         return false;
     }
-    else if (str.length === 1) {
+    if (str.length === 1) {
         return true;
     }
-    dict= {};
-    for (let i = 0; i < str.length; i++) {
-        if (!dict.hasOwnProperty(str[i])) {
-            for (let j = 0; j < str.length; j++) {
-                if (str[i] === str[j]) {
-                    dict[str[i]]= (dict[str[i]]+1) || 1;
-                }
-            }
-        }
-    }
-    let count = 0;
-    for (let x in dict) {
-        if (str.length%2 === 0){
-            if (dict[x]%2 === 0) {
-                return true;
-            }
-            else {
-                return false;
-            }
+    occur = {};
+    for (let char in str) {
+        if (char in occur) {
+            occur.pop(char);
         }
         else {
-            if (dict[x]%2 !== 0) {
-                count+= 1;
-            }
+            occur[char] = 1;
         }
     }
-    if (count === 1) {
-        return true;
-    }
-    else {
+    if (str.length % 2 == 0 && occur.length != 0) {
         return false;
     }
+    else if (str.length % 2 == 1 && occur.length > 1) {
+        return false;
+    }
+    return true;
 }
 console.log(canStringBecomePalindrome(str1));
 console.log(canStringBecomePalindrome(str2));
@@ -127,3 +150,21 @@ console.log(canStringBecomePalindrome(str3));
 console.log(canStringBecomePalindrome(str4));
 console.log(canStringBecomePalindrome(str5));
 console.log(canStringBecomePalindrome(str6));
+
+// def canStringBecomePalindrome(str):
+//     if len(str) == 0:
+//         return False
+//     if len(str) == 1:
+//         return True
+//     occur = {}
+//     for char in str:
+//         if char in occur:
+//             occur.pop(char)
+//         else:
+//             occur[char] = 1
+
+//     if len(str) % 2 == 0 and len(occur) != 0:
+//         return False
+//     elif len(str) % 2 == 1 and len(occur) > 1:
+//         return False
+//     return True
