@@ -80,7 +80,9 @@ def groupObjects(items):
     for obj in items:
         category = obj['category'].lower()
         if category in groupedByResult:
-            groupedByResult[category].append(obj)
+            # groupedByResult[category].append(obj)
+            itemsWithThisCatagory= groupedByResult[category]
+            itemsWithThisCatagory.append(obj)
         else:
             groupedByResult[category] = [obj]
     return groupedByResult
@@ -140,7 +142,6 @@ def backspaceStringCompare(S, T):
             tResult = tResult[:-1]
         else:
             tResult += char
-    
     return sResult == tResult
 
 print(backspaceStringCompare(S1, T1))
